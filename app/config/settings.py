@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'app.users.User'
 
 STATIC_URL = '/static/'
 
@@ -19,8 +19,6 @@ DEBUG = True
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
-    'users',
-    'appointments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
