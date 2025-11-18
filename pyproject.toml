@@ -15,6 +15,7 @@ django = "^4.0"
 djangorestframework = "^3.12"
 psycopg2 = "^2.9"
 whitenoise = "^5.2"
+gunicorn = "^23.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
