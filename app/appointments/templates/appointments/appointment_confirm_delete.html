@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Eliminar Cita</h2>
+<p>¿Estás seguro de eliminar la cita de <strong>{{ object.patient }}</strong> con <strong>{{ object.dentist }}</strong> el <strong>{{ object.date }}</strong> a las <strong>{{ object.time }}</strong>?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'appointments:list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Citas de Hoy</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Hora</th>
+                <th>Paciente</th>
+                <th>Dentista</th>
+                <th>Notas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.time }}</td>
+                <td>{{ appointment.patient }}</td>
+                <td>{{ appointment.dentist }}</td>
+                <td>{{ appointment.notes }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay citas para hoy.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

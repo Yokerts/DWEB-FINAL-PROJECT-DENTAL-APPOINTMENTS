@@ -1,0 +1,51 @@
+<!-- app/appointments/templates/appointments/appointment_list.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Citas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .status-scheduled { color: blue; }
+        .status-completed { color: green; }
+        .status-cancelled { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Citas</h1>
+
+    {% if appointments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Dentista</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
+                    <th>Notas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</td>
+                        <td>{{ appointment.dentist.first_name }} {{ appointment.dentist.last_name }}</td>
+                        <td>{{ appointment.date }}</td>
+                        <td>{{ appointment.time }}</td>
+                        <td class="status-{{ appointment.status }}">{{ appointment.get_status_display }}</td>
+                        <td>{{ appointment.notes|default:"-" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay citas registradas.</p>
+    {% endif %}
+
+</body>
+</html>

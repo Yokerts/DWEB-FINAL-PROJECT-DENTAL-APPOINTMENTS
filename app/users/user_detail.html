@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Detalles del Usuario</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <p><strong>ID:</strong> {{ user.id }}</p>
+            <p><strong>Usuario:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+
+            <a href="{% url 'user_update' user.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'user_delete' user.id %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'user_list' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

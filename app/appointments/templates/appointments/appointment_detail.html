@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalles de la Cita</h2>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Paciente:</strong> {{ appointment.patient }}</li>
+    <li class="list-group-item"><strong>Dentista:</strong> {{ appointment.dentist }}</li>
+    <li class="list-group-item"><strong>Fecha:</strong> {{ appointment.date }}</li>
+    <li class="list-group-item"><strong>Hora:</strong> {{ appointment.time }}</li>
+    <li class="list-group-item"><strong>Estado:</strong> {{ appointment.status }}</li>
+</ul>
+
+<a href="{% url 'appointments:update' appointment.pk %}" class="btn btn-warning mt-3">Editar</a>
+<a href="{% url 'appointments:delete' appointment.pk %}" class="btn btn-danger mt-3">Eliminar</a>
+<a href="{% url 'appointments:list' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+{% endblock %}

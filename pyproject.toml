@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "dental-appointments"
+version = "0.1.0"
+description = "A Django project for managing dental appointments."
+authors = ["Carlos A. Medina A. <ing_medina16@hotmail.com>"]
+license = "MIT"
+
+packages = [
+    { include = "app" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^4.0"
+djangorestframework = "^3.12"
+psycopg2 = "^2.9"
+whitenoise = "^5.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0"
+pytest-django = "^4.5"
+black = "^21.7b0"
+isort = "^5.9"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
