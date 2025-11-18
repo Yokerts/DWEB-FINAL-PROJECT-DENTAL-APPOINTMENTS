@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
-AUTH_USER_MODEL = 'app.users.User'
+AUTH_USER_MODEL = 'users.User'
 
 STATIC_URL = '/static/'
 
@@ -26,8 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'app.appointments',
     'app.users',
+    'app.appointments',
 ]
 
 
