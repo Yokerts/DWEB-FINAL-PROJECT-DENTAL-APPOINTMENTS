@@ -19,8 +19,8 @@ DEBUG = True
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
-    'users',
-    'appointments',
+    'app.users',
+    'app.appointments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
