@@ -1,23 +1,33 @@
-# settings.py
-
 import os
 from pathlib import Path
 import dj_database_url
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# IMPORTANTE: tu manage.py está dentro de app/
+# Entonces BASE_DIR debe subir DOS niveles:
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
 AUTH_USER_MODEL = 'users.User'
 
-STATIC_URL = '/static/'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # o cualquier carpeta que quieras
-
-#DEBUG = os.environ.get('DEBUG', 'false') == 'true'
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'false') == 'true'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+
+# ---------------- STATIC FILES ---------------- #
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ESTA es la ubicación correcta:
+# tu carpeta static está en: app/static/
+STATICFILES_DIRS = [
+    BASE_DIR / "app" / "static",
+]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# ---------------- INSTALLED APPS ---------------- #
 
 INSTALLED_APPS = [
     'users',
@@ -30,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# ---------------- MIDDLEWARE ---------------- #
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -46,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "app" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -61,7 +73,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Base de datos usando variables de entorno
+# ---------------- DATABASE ---------------- #
+
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
@@ -70,22 +83,12 @@ DATABASES = {
     )
 }
 
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
-]
+# ---------------- GLOBAL SETTINGS ---------------- #
 
 LANGUAGE_CODE = 'es'
-
 TIME_ZONE = os.environ.get('TIME_ZONE', 'UTC')
 
 USE_I18N = True
 USE_TZ = True
 
-# Archivos estáticos
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [BASE_DIR / "app" / "static"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
