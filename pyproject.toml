@@ -16,6 +16,7 @@ djangorestframework = "^3.12"
 psycopg = "^3.2.0"
 whitenoise = "^5.2"
 gunicorn = "^23.0.0"
+dj-database-url = "^3.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
